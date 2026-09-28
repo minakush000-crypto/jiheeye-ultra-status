@@ -146,3 +146,18 @@ synced, ARCHITECTURE.md section 5 added. Committed 8a0a3ff and pushed.
   uppercase NPM_CONFIG_CACHE is empty in env.sh; D: probe writable; gh authed;
   no git remotes existed before J7. Reported for a SYSTEM.md fix on the
   claude.ai side.
+## Gate evidence (unlazy, after the last code commit)
+
+Final state: commit 3603dff, working tree clean, pushed to origin. Command:
+node /home/muads/.claude/skills/unlazy/scripts/gate-check.mjs --reverify
+GATES.md --timeout 3600, run AFTER commit 3603dff:
+
+  PASS G0 lint (LINT OK) ... PASS G12 report sections, ALL MET
+  GATES.md: 13 gates
+  ALL MET (13 met, reran: 13, previously met reverified: 13)
+
+Per-gate: G0 G1 G2 G3 G4 G5 G6 G7 G8 G9 G10 G11 G12 all PASS with exit=0 and
+matched EXPECT. G7 offline: ALL OFFLINE TESTS PASSED (bytes=4767). G8 Modal:
+ALL MODAL TESTS PASSED (QC checks 12/12) (bytes=1140). G10 verify_mirror:
+MIRROR-CLEAN-OK (27 files). Full transcript: /mnt/d/scratch/jiheeye-ultra/
+(push_status.log) and the session log.

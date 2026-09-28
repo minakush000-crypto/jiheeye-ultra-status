@@ -31,10 +31,15 @@ Format: `YYYY-MM-DD — decision — who decided — why`.
   status-mirror (not in home, per SYSTEM.md section 11; not on C:) — Flash.
 - 2026-09-28 — Mirror copies of allowlisted files get Mayo's git email masked
   to `[redacted-email]`; the private copy stays byte-verbatim (G1) — Flash —
-  the secret scan (correctly) blocked `[redacted-email]` inside
+  the secret scan (correctly) blocked the owner's gmail address inside
   briefs/brief01.md; redacting the mirror copy only keeps both closed
   decisions: verbatim private brief AND no personal email on the public
   mirror.
+- 2026-09-28 — The mirror clone commits with
+  minakush000-crypto@users.noreply.github.com (set repo-local by
+  push_status.sh) — Flash — the fresh clone had no identity (first push
+  failed with "empty ident name"); the noreply address keeps Mayo's personal
+  email off the PUBLIC commit log as well, matching the content scan's rule.
 - 2026-09-28 — SYSTEM.md drift found and reported: (1) §4 claims the Modal CLI
   is installed; the machine check found it missing (exit 127), fixed by
   installing `modal` into pipeline/.venv (J3); ~/.modal.toml survived and is
