@@ -143,3 +143,7 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
 - [ ] G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
   CHECK: grep -q "REVERIFY-OUTPUT-BELOW" reports/brief02.md && echo REVERIFY-IN-REPORT
   EXPECT: REVERIFY-IN-REPORT
+
+ABANDON: G18 blocked on Mayo: ElevenLabs instant voice cloning requires a paid plan tier (HTTP 400 paid_plan_required, request_id 7185e9dfc60a80a303c3b287f243188b, from the working sk_ key found on the machine); only Mayo can pick the plan and put its sk_ secret key into pipeline/.env; all Flash-side work is done (Modal voice sample rendered in 82 s and cached, consent gate passes, preflight 13/13); the clone call is the only step left
+ABANDON: G21 blocked on Mayo via G18: make --until tts --allow-unreviewed needs the cloned voice; the command, guard rails, ad00_script.txt and the review folder are ready; nothing to run until an IVC-capable sk_ key lands in pipeline/.env
+ABANDON: G26 the final gate-check --reverify belongs at brief closure after J6-J7 complete; an interim gate-check already ran and is published (24/27 met; G18/G21/G26 unmet); these will be re-created as new gates when Mayo unblocks
