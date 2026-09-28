@@ -1,0 +1,30 @@
+{
+  "id": "ad01",
+  "language": "so",
+  "reviewed_by_native_speaker": false,
+  "notes": "Somali lines copied from the Google chat draft. Not checked by a native speaker. Read aloud, fix wording/spelling, then set reviewed_by_native_speaker to true.",
+  "scenes": [
+    {
+      "id": "hook",
+      "type": "avatar",
+      "text": "Horta waad i dhowraysaa, si fican iigu fiirso. Casharku maanta waa mid culus."
+    },
+    {
+      "id": "problem",
+      "type": "avatar",
+      "text": "Waxaad ku wareeraysaa nidaam jaban iyo qalab tayadiisu hoosayso. Taasi waa fashil."
+    },
+    {
+      "id": "product",
+      "type": "broll",
+      "text": "Haddaba maqal, xalku waa Jiheeye Ultra. Kani waa nidaam heer sare ah oo wax kasta beddelaya.",
+      "image": "assets/product.png",
+      "prompt": "Slow cinematic push-in on the product on a dark reflective surface, soft studio light, shallow depth of field, no text, no people"
+    },
+    {
+      "id": "cta",
+      "type": "avatar",
+      "text": "Rule Number 1, marnaba ha moogaan nidaamkan. Riix linkiga oo qaado Jiheeye Ultra hadda."
+    }
+  ]
+}
