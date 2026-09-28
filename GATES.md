@@ -43,13 +43,13 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
   CHECK: .venv/bin/python tests/test_offline.py
   CWD: pipeline
   EXPECT: ALL OFFLINE TESTS PASSED
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=a4812af73b323c06e283d2b2ebf709a8862f9402e0a878ea92c8e714b5dd3312; output-bytes=4767
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=ec51ad6b6f6dc46953e3933a6206aa935c4b53f875a4cb84ee9489791ad5fec3; output-bytes=4767
 
 - [x] G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
   CHECK: .venv/bin/python tests/test_modal.py
   CWD: pipeline
   EXPECT: ALL MODAL TESTS PASSED (QC checks 12/12)
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=f87dd59597024cfaac22214236c165d56c29c2cd56ff1d3c9129b0a17346433c; output-bytes=1140
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=fccec9e728851910ff3ff2de2d0df935101405e4e0d215c9f2b92bcf2888136c; output-bytes=1140
 
 - [x] G9: private GitHub repo has main pushed
   CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && echo PRIVATE-REPO-OK'
