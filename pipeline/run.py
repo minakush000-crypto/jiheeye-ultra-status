@@ -6,6 +6,9 @@ Usage (WSL2 Ubuntu terminal, inside the repo's pipeline/ folder):
   python run.py voice                          # stage 1-2: clean your clips, clone your voice (one time)
   python run.py make scripts/ad01.json         # stage 3-8: script -> final.mp4 -> QC
   python run.py make scripts/ad01.json --until tts   # stop after a stage (cheap test)
+  python run.py make scripts/ad00_test.json --until tts --allow-unreviewed
+                                               # brief 02 J7: unreviewed Somali, TTS only, audio goes
+                                               # to Mayo's review folder; never renders a full ad
 """
 from __future__ import annotations
 
@@ -59,7 +62,7 @@ def run_disk_guard() -> None:
                          "nothing falls back to C: (doctrine 8).")
 
 
-def validate_script(script: dict) -> None:
+def validate_script(script: dict, allow_unreviewed: bool = False) -> None:
     if not script.get("scenes"):
         raise StageError("script has no scenes")
     ids = [s["id"] for s in script["scenes"]]
@@ -74,7 +77,7 @@ def validate_script(script: dict) -> None:
             raise StageError(f"scene {s['id']}: broll needs image and prompt")
     if script["scenes"][0]["type"] != "avatar":
         raise StageError("first scene must be avatar (the hook is a face)")
-    if not script.get("reviewed_by_native_speaker"):
+    if not script.get("reviewed_by_native_speaker") and not allow_unreviewed:
         raise StageError("script.reviewed_by_native_speaker is false. Read the Somali text aloud once, then set it true.")
 
 
@@ -130,9 +133,11 @@ def preflight(cfg: dict) -> bool:
     return ok
 
 
-def make(cfg: dict, script_path: Path, until: str | None) -> int:
+def make(cfg: dict, script_path: Path, until: str | None, allow_unreviewed: bool = False) -> int:
     script = json.loads(script_path.read_text(encoding="utf-8"))
-    validate_script(script)
+    validate_script(script, allow_unreviewed=allow_unreviewed)
+    if allow_unreviewed and not script.get("reviewed_by_native_speaker"):
+        print("UNREVIEWED: audio for Mayo's review", flush=True)
     runs_dir, _ = resolve_scratch(cfg)
     run_dir = runs_dir / script.get("id", script_path.stem)
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -194,8 +199,14 @@ def main() -> None:
     ap.add_argument("script", nargs="?")
     ap.add_argument("--config", default=str(ROOT / "config.yaml"))
     ap.add_argument("--until", choices=ORDER)
+    ap.add_argument("--allow-unreviewed", action="store_true",
+                    help="brief 02 J7: bypass the native-speaker gate for ad00_test.json; "
+                         "valid ONLY with: make <script> --until tts")
     a = ap.parse_args()
     allow_local = os.environ.get("JIHEEYE_ALLOW_LOCAL")  # captured BEFORE .env loads
+    if a.allow_unreviewed and not (a.cmd == "make" and a.until == "tts"):
+        die("--allow-unreviewed is valid ONLY with: make <script> --until tts "
+            "(brief 02 J7: unreviewed audio never proceeds past TTS)")
     cfg = load_config(a.config)
     try:
         if a.cmd in ("voice", "make"):
@@ -220,7 +231,7 @@ def main() -> None:
             return
         if not a.script:
             die("make needs a script path, e.g. scripts/ad01.json")
-        sys.exit(make(cfg, Path(a.script).resolve(), a.until))
+        sys.exit(make(cfg, Path(a.script).resolve(), a.until, allow_unreviewed=a.allow_unreviewed))
     except StageError as e:
         die(str(e))
 

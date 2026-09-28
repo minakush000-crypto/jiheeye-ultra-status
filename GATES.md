@@ -70,3 +70,65 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
   CHECK: bash -c 'for j in J1 J2 J3 J4 J5 J6 J7 J8 J9; do grep -q "^## $j" reports/brief01.md || exit 1; done && echo REPORT-OK'
   EXPECT: REPORT-OK
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=b5d799b8ae3e8271ceb1d56f5cb1568d96693dfbb46d5b606ffa2133a3bc5c18; output-bytes=10
+
+# Gates: brief 02 (voice clone, first Somali audio, vertical avatar, $10 cap)
+
+Scope: execute every job in briefs/brief02.md (J1-J9) so each "done means" is
+proven by raw pasted command output in reports/brief02.md, and cumulative paid
+spend (ElevenLabs + Replicate + Modal) stays <= $10.
+
+- [ ] G13: briefs/brief02.md is a byte-exact copy of the coordinator brief
+  CHECK: diff -q /mnt/c/Users/muads/Claude/briefs/jiheeye-brief02.md briefs/brief02.md && echo BRIEF02-VERBATIM-OK
+  EXPECT: BRIEF02-VERBATIM-OK
+
+- [ ] G14: voice clip staged at pipeline/assets/voice/raw/clip1.mp3; its real sha256 recorded; the deviation from the brief's stated prefix 35cb41ae21cf94e4 investigated with decoded-PCM evidence and documented in DECISIONS.md; the inbox delete skipped because the verify precondition failed
+  CHECK: bash -c 'test -s pipeline/assets/voice/raw/clip1.mp3 && grep -q "44575846ec3e2069" DECISIONS.md && grep -q "35cb41ae21cf94e4" DECISIONS.md && test -f /mnt/c/Users/muads/Claude/jiheeye-inbox/clip1.mp3 && echo CLIP-STAGED-DEVIATION-DOCUMENTED'
+  EXPECT: CLIP-STAGED-DEVIATION-DOCUMENTED
+
+- [ ] G15: CONSENT.md voice gate passes (J3, output pasted in report)
+  CHECK: pipeline/.venv/bin/python -c "import sys; sys.path.insert(0, 'pipeline'); from pathlib import Path; from ugc.voice_clone import check_consent; print('CONSENT-OK', check_consent(Path('.')))"
+  EXPECT: CONSENT-OK
+
+- [ ] G16: both API keys present in pipeline/.env; machine-wide ElevenLabs key search done (paths/names only, no values)
+  CHECK: bash -c 'grep -qE "^ELEVENLABS_API_KEY=.+" pipeline/.env && grep -qE "^REPLICATE_API_TOKEN=.+" pipeline/.env && grep -q "KEY SEARCH" reports/brief02.md && echo KEYS-OK'
+  EXPECT: KEYS-OK
+
+- [ ] G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
+  CHECK: bash -c 'cd pipeline && .venv/bin/python run.py preflight && echo PREFLIGHT-OK'
+  EXPECT: PREFLIGHT-OK
+
+- [ ] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
+  CHECK: bash -c 'test -s pipeline/assets/voice/voice_sample.wav && test -s pipeline/assets/voice/voice_id.txt && grep -q "Modal runtime" reports/brief02.md && grep -q "voice_id" reports/brief02.md && echo VOICE-STAGE-OK'
+  EXPECT: VOICE-STAGE-OK
+
+- [ ] G19: pipeline/scripts/ad00_test.json is ad01 minus the product scene with reviewed_by_native_speaker still false
+  CHECK: bash -c 'cd pipeline && .venv/bin/python -c "import json; s=json.load(open(\"scripts/ad00_test.json\")); ids=[x[\"id\"] for x in s[\"scenes\"]]; assert \"product\" not in ids, ids; assert s[\"reviewed_by_native_speaker\"] is False; assert len(ids)==3, ids; print(\"AD00-OK\")"'
+  EXPECT: AD00-OK
+
+- [ ] G20: --allow-unreviewed implemented (valid only with --until tts) and the offline regression suite still passes
+  CHECK: bash -c 'grep -q "allow-unreviewed" pipeline/run.py && cd pipeline && JIHEEYE_ALLOW_LOCAL=1 .venv/bin/python tests/test_offline.py | tail -1'
+  EXPECT: ALL OFFLINE TESTS PASSED
+
+- [ ] G21: make --until tts --allow-unreviewed ran; UNREVIEWED line printed; ad00_vo.mp3 + ad00_script.txt on C: for Mayo
+  CHECK: bash -c 'test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_vo.mp3 && test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_script.txt && grep -q "UNREVIEWED: audio for Mayo" reports/brief02.md && echo REVIEW-FILES-OK'
+  EXPECT: REVIEW-FILES-OK
+
+- [ ] G22: avatar extended to 1080x1920 (9:16) and preview written to C:; method (model+schema, or blurred fallback) documented
+  CHECK: bash -c 'ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 pipeline/assets/avatar.png | grep -q "^1080,1920" && test -s /mnt/c/Users/muads/Claude/jiheeye-review/avatar_preview.png && grep -q "schema" reports/brief02.md && echo AVATAR-OK'
+  EXPECT: AVATAR-OK
+
+- [ ] G23: spend ledger complete and cumulative <= $10
+  CHECK: bash -c 'test -s reports/brief02_spend.csv && awk -F, "NR>1{c=\$6} END{if(c<=10){print \"SPEND-OK\", c; exit 0} else {exit 1}}" reports/brief02_spend.csv'
+  EXPECT: SPEND-OK
+
+- [ ] G24: reports/brief02.md holds RAW pasted outputs for J2-J8 (sha256sum, consent gate, key search, preflight, voice run, make run, model schema) and the spend CSV
+  CHECK: bash -c 'for j in J2 J3 J4 J5 J6 J7 J8; do grep -q "^## $j" reports/brief02.md || exit 1; done && grep -q "brief02_spend.csv" reports/brief02.md && echo REPORT-OK'
+  EXPECT: REPORT-OK
+
+- [ ] G25: private repo pushed and public mirror republished clean
+  CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && bash tools/verify_mirror.sh'
+  EXPECT: MIRROR-CLEAN-OK
+
+- [ ] G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
+  CHECK: grep -q "REVERIFY-OUTPUT-BELOW" reports/brief02.md && echo REVERIFY-IN-REPORT
+  EXPECT: REVERIFY-IN-REPORT

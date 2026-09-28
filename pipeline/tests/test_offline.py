@@ -46,6 +46,9 @@ def main() -> None:
         raise AssertionError("validator should block reviewed_by_native_speaker=false")
     except StageError:
         print("PASS validator blocks unreviewed script")
+    # brief 02 J7: the allow_unreviewed escape hatch must accept the same script
+    runner.validate_script(script, allow_unreviewed=True)
+    print("PASS validator allow_unreviewed accepts unreviewed script")
     script["reviewed_by_native_speaker"] = True
     runner.validate_script(script)
     bad = copy.deepcopy(script)
