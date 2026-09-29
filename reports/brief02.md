@@ -141,6 +141,27 @@ Commit 14e8b2d.
   character; plan allowances Free 10k / Starter 30k / Creator 121k).
 - Secret scan: run at the end of the session with the mirror publish (see J9);
   repo .gitignore now also covers a root .env (hardening, commit 977fb5c).
+- AUDIT CORRECTION (session 2, adversarial fan-out): the session-1 provenance
+  claim - "the yt-digest/soccer key ... sha256-of-value c4304e73dcc5" - could
+  NOT be re-verified against any key material on this machine. Hash check
+  (every ELEVENLABS_API_KEY value hashed, never printed):
+  ```
+  /home/muads/yt-digest/.env line 6 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/yt-digest/.env line 7 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/yt-digest/.env.bak-sep7 line 6 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/yt-digest/.env.bak-sep7 line 7 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/yt-digest/.env.bak-voice line 6 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/yt-digest/.env.bak-voice line 7 len 51 sha16 348bc155b4591217 prefix sk_
+  /home/muads/jiheeye-ultra/pipeline/.env one line len 51 sha16 c07aa7f566131b22 prefix sk_
+  ```
+  Nothing here hashes to c4304e73dcc5. Session 1's key-hunt observations
+  record exactly the hazards that could have produced a wrong hash
+  (duplicate duplicate lines + trailing characters). Provenance of the
+  session-1-installed key: UNRESOLVABLE post-overwrite (○) - the recorded
+  hash c4304e73dcc5 is treated as an extraction-variant artifact. What is
+  live and fully verified is the CURRENT key (Mayo's, J6 below): models HTTP
+  200 (all PASS at 20:02), subscription HTTP 200, IVC succeeded. Session 1's
+  preflight pass stands as evidence that SOME working key existed then.
 
 ## J5 Preflight
 
@@ -258,7 +279,7 @@ present the .env value is what the pipeline uses).
   dashboard verification step. IVC creation cost: character_count still 0
   right after (no credit deduction observed for creating the voice).
 
-## J7 Test script + allow-unreviewed (prepared; run blocked by J6)
+## J7 Test script + allow-unreviewed (COMPLETE: TTS rendered with the cloned voice)
 
 - `pipeline/scripts/ad00_test.json` created = ad01.json minus the "product"
   broll scene (commit de86a98): ids hook, problem, cta; all avatar;
@@ -384,19 +405,24 @@ composition and all measurements were one-off asset prep; the pixel compute
 - Spend ledger (reports/brief02_spend.csv):
   ```
   time_utc,provider,model,units,est_usd,cumulative_usd
-  2026-09-28T03:18Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.11
-  2026-09-28T03:33Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.22
-  2026-09-28T03:28Z,modal,jiheeye-avatar-finish (ad-hoc run),2 runs x ~11s CPU 1-core,0.01,0.23
-  2026-09-28T03:46Z,modal,jiheeye-ultra/voice_prep_remote,1 run 82s wall (4-core container),0.01,0.24
-  2026-09-28T03:46Z,elevenlabs,instant-voice-cloning,attempted - REJECTED paid_plan_required,0.00,0.24
+  time_utc,provider,model,units,est_usd,cumulative_usd
+  2026-09-28T08:18Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.11
+  2026-09-28T08:27Z,modal,jiheeye-avatar-finish (ad-hoc run),2 runs x ~11s CPU 1-core (at ~08:27 + ~08:35Z),0.01,0.12
+  2026-09-28T08:33Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.23
+  2026-09-28T08:46Z,modal,jiheeye-ultra/voice_prep_remote,1 run 82s wall (4-core container),0.01,0.24
+  2026-09-28T08:46Z,elevenlabs,instant-voice-cloning,attempted - REJECTED paid_plan_required,0.00,0.24
   2026-09-28T23:57Z,elevenlabs,starter-plan (Mayo's own purchase),1 month,5.00,5.24
   2026-09-29T01:02Z,modal,jiheeye-ultra/voice_prep_remote,0 runs - cache hit on rerun,0.00,5.24
   2026-09-29T01:02Z,elevenlabs,instant-voice-cloning,1 voice created (9.1 MiB sample) - SUCCESS no fee observed,0.00,5.24
   2026-09-29T01:02Z,elevenlabs,eleven_v3,ad00_test TTS 248 chars (counter still 0 at +2min),0.00,5.24
   2026-09-29T01:12Z,modal,tests/test_modal.py (gate rerun),1 run 12 QC checks,0.01,5.25
   ```
-  Cumulative estimate: $5.25 of the $10 cap ($5.00 = Mayo's Starter month
-  purchase at unblock, $0.24 usage + $0.01 QA rerun). Session 2 replaced
+  AUDIT CORRECTION (session 2): session-1 rows had LOCAL CDT morning times
+  in the time_utc column (03:18Z etc. would predate the session that ran
+  them); corrected +5 h to true UTC and rows re-sorted (03:18 CDT = 08:18Z);
+  the two avatar-finisher Modal runs stay bundled in one row (~08:27 and
+  ~08:35Z); cumulative chain recomputed, final total unchanged. Session 2
+  replaced
   guesses with a live source: the new key CAN read GET /v1/user/subscription
   (tier starter, character_count 0, limit 37438), so TTS cost is measured
   against the allowance, not a pricing-page estimate. Remaining sources as

@@ -1,9 +1,9 @@
 time_utc,provider,model,units,est_usd,cumulative_usd
-2026-09-28T03:18Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.11
-2026-09-28T03:33Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.22
-2026-09-28T03:28Z,modal,jiheeye-avatar-finish (ad-hoc run),2 runs x ~11s CPU 1-core,0.01,0.23
-2026-09-28T03:46Z,modal,jiheeye-ultra/voice_prep_remote,1 run 82s wall (4-core container),0.01,0.24
-2026-09-28T03:46Z,elevenlabs,instant-voice-cloning,attempted - REJECTED paid_plan_required,0.00,0.24
+2026-09-28T08:18Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.11
+2026-09-28T08:27Z,modal,jiheeye-avatar-finish (ad-hoc run),2 runs x ~11s CPU 1-core (at ~08:27 + ~08:35Z),0.01,0.12
+2026-09-28T08:33Z,replicate,black-forest-labs/flux-fill-pro,1 image (2.07MP in / 1.17MP out),0.11,0.23
+2026-09-28T08:46Z,modal,jiheeye-ultra/voice_prep_remote,1 run 82s wall (4-core container),0.01,0.24
+2026-09-28T08:46Z,elevenlabs,instant-voice-cloning,attempted - REJECTED paid_plan_required,0.00,0.24
 2026-09-28T23:57Z,elevenlabs,starter-plan (Mayo's own purchase),1 month,5.00,5.24
 2026-09-29T01:02Z,modal,jiheeye-ultra/voice_prep_remote,0 runs - cache hit on rerun,0.00,5.24
 2026-09-29T01:02Z,elevenlabs,instant-voice-cloning,1 voice created (9.1 MiB sample) - SUCCESS no fee observed,0.00,5.24

@@ -1,6 +1,6 @@
 # STATUS.md
 
-Updated: 2026-09-28 20:03 CDT (brief 02 session 2; ages checked at update:
+Updated: 2026-09-28 20:59 CDT (brief 02 session 2, after audit-fan-out fixes; ages checked at update:
 pipeline/.env mtime 19:57:41 CDT, new in this session; voice_sample.wav and
 avatar.png from session 1, 2026-09-28 early morning)
 

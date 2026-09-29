@@ -115,3 +115,34 @@ Format: `YYYY-MM-DD — decision — who decided — why`.
   stale (session 1's 272-byte version no longer matched the current
   ad00_test.json); rewritten directly from the script JSON — Flash
   (session-2 fix #1).
+## Brief 14 (soccer-channel brief; shared harness change) — 2026-09-28
+
+The shared ~/.claude harness was leaned by the soccer channel's brief 14.
+Effect on jiheeye-ultra: identical command hooks in ~/.claude/settings.json
+are now listed once instead of 3 times (ECC installed duplicates); 4
+ECC Stop children removed globally (desktop-notify, evaluate-session,
+check-console-log, format-typecheck) because none had a consumer on this
+machine; 3 business agents removed (chief-of-staff, healthcare-reviewer,
+marketing-agent); MCP filesystem/memory/sequential-thinking removed (no
+callers in either repo); unlazy Stop, both push_status hooks, disk-guard
+hooks and all claude-mem hooks untouched. ECC install-state reconciled;
+ecc.js doctor clean. Rollback: b2:mendymax-archive/backups/
+2026-09-28_claude_home_pre_lean.tar.gz. Full evidence: soccer repo
+soccer-channel/reports/brief14/.
+- 2026-09-29 - Adversarial audit fan-out (4 read-only agents) found 3 report
+  defects, all fixed this session: (1) session-1's J4 provenance hash
+  c4304e73dcc5 is not reproducible against any key material now on the
+  machine (yt-digest's three env files hold sha16 348bc155b4591217 twice
+  each); the recorded provenance is marked unresolvable post-overwrite and
+  the operative, live-verified key is Mayo's c07aa7f566131b22; (2) the J7
+  heading still said "run blocked by J6" under a completed run - reworded;
+  (3) the spend CSV carried LOCAL CDT morning times labeled Z for session-1
+  rows - corrected +5 h to true UTC, re-sorted, cumulative recomputed (total
+  unchanged, $5.25) - Flash (audit fixes #2-#4).
+- 2026-09-29 - Foreign-commit observation: 6b8e0c7 "brief14 (soccer): shared
+  harness lean pass recorded" (DECISIONS.md +15 -1, Mayo's credential,
+  2026-09-28 20:54:17 CDT) landed on this repo AFTER brief02's closure commit
+  94f7796 and AFTER the B2 snapshot (taken exactly at 94f7796, confirmed by
+  the audit) - brief02's closure evidence is untouched by it; it rode on top
+  cleanly. Recorded so nobody calls it a stray write: it is the soccer
+  session's cross-pipeline bookkeeping for the shared-harness lean - Flash.
