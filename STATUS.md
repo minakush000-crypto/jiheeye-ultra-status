@@ -23,7 +23,7 @@ DONE (all proven by raw pasted output in reports/brief02.md):
   session-1 copy was stale), avatar_preview.png still there.
 - Preflight re-run with the new key: ALL PASS, exit 0. Subscription read:
   tier starter, 37,438 credit allowance, counter 0.
-- Gates: 27/27 met. Brief 02 spend: $5.24 of the $10 cap ($0.24 usage +
+- Gates: 27/27 met. Brief 02 spend: $5.25 of the $10 cap ($0.24 usage + $0.01 QA rerun +
   Mayo's $5.00 Starter month; reports/brief02_spend.csv). Final gate-check
   --reverify output pasted in reports/brief02.md; private repo pushed; mirror
   published.
