@@ -427,4 +427,263 @@ REVERIFY-OUTPUT-BELOW
 (command: `node ~/.claude/skills/unlazy/scripts/gate-check.mjs --reverify --timeout 180 GATES.md`,
 run from the repo root, in the shell, AFTER the last commit of this session.
 gate-check --approve first ran the re-created G18/G21 (PASS) at 20:0x CDT;
-G26 was intentionally unmet until this paste existed. Raw output follows.)
+G26 was intentionally unmet until this paste existed. Raw output follows.
+
+RAW OUTPUT of `node ~/.claude/skills/unlazy/scripts/gate-check.mjs --approve --reverify --timeout 180 GATES.md`
+(exit 0; "GATES.md: 27 gates" / "ALL MET (27 met, reran: 27, previously met reverified: 27)";
+captured 2026-09-29T01:11Z): 
+
+```
+APPROVAL REQUIRED GATES:G0
+    CHECK: node /home/muads/.claude/skills/unlazy/scripts/gate-lint.mjs GATES.md
+    EXPECT: LINT OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/b14f630fb21dae3de523b09af626882c81142474174e5b4bd2b51b8fecd3d4f5.json
+APPROVAL REQUIRED GATES:G1
+    CHECK: diff -q /mnt/c/Users/muads/Claude/briefs/jiheeye-brief01.md briefs/brief01.md && echo BRIEF-VERBATIM-OK
+    EXPECT: BRIEF-VERBATIM-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/e49086ee172cb91e64da3a478ba18acccf8c8432071cdf61d4bd850bd50584d4.json
+APPROVAL REQUIRED GATES:G2
+    CHECK: bash -c 'test -s CLAUDE.md && test -s DECISIONS.md && test -s STATUS.md && test -s PROGRESS.md && test -d briefs && test -d reports && grep -q "Demucs voice cleanup" DECISIONS.md && grep -q "jiheeye-ultra-status" DECISIONS.md && echo SCAFFOLD-OK'
+    EXPECT: SCAFFOLD-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/9e4f2a4b7cb05bb4aee9f98dd27a3f8764cdae43ae60d4673507344ee16fa34b.json
+APPROVAL REQUIRED GATES:G3
+    CHECK: bash -c 'test -s .claude/skills/jiheeye-ugc-pipeline/SKILL.md && grep -q "jiheeye-ultra" .claude/skills/jiheeye-ugc-pipeline/SKILL.md && echo SKILL-OK'
+    EXPECT: SKILL-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/040bd44f3190a8c13c0fcbdc0c83108d80a0b84fe0b8651444e0259cd59ef27f.json
+APPROVAL REQUIRED GATES:G4
+    CHECK: pipeline/.venv/bin/python -c "import yaml, requests, numpy, soundfile, noisereduce, replicate, modal; print('VENV-OK')"
+    EXPECT: VENV-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/009aaa3093bafa27df7c91d6def049ceb8db7b722d1286071053867fff8e8720.json
+APPROVAL REQUIRED GATES:G5
+    CHECK: pipeline/.venv/bin/python tools/check_wiring.py
+    EXPECT: WIRING-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/02ce69994e2e287c1f41e1d0c9c11481a90203956e7ec40fb9e384c4a86d003b.json
+APPROVAL REQUIRED GATES:G6
+    CHECK: pipeline/.venv/bin/modal app list --json 2>/dev/null | grep -A1 '"description": "jiheeye-ultra"' | grep -q '"state": "deployed"' && echo MODAL-DEPLOYED-OK
+    EXPECT: MODAL-DEPLOYED-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/9ab8a8427d59ea50e7c8855c551f9d0efe6bcdae1a1b7a8ad71b7e666766b17c.json
+APPROVAL REQUIRED GATES:G7
+    CHECK: .venv/bin/python tests/test_offline.py
+    EXPECT: ALL OFFLINE TESTS PASSED
+    CWD: /home/muads/jiheeye-ultra/pipeline
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/2ee3ad28c444185f0b725f214550d7f793fabf65c9b57a7a527650a560d96319.json
+APPROVAL REQUIRED GATES:G8
+    CHECK: .venv/bin/python tests/test_modal.py
+    EXPECT: ALL MODAL TESTS PASSED (QC checks 12/12)
+    CWD: /home/muads/jiheeye-ultra/pipeline
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/d2da9ab9a907f6ae3d3b3709efea504eb2c79754d2988bd8225ded7982b6e257.json
+APPROVAL REQUIRED GATES:G9
+    CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && echo PRIVATE-REPO-OK'
+    EXPECT: PRIVATE-REPO-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/d3bddb8cabe131c9339bebf5d28a1dfc7cce6b91172e88c6caf445e6afdad53c.json
+APPROVAL REQUIRED GATES:G10
+    CHECK: bash tools/verify_mirror.sh
+    EXPECT: MIRROR-CLEAN-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/59036e4932b35355cfd1d6651df13290371068d4e7c93e2d49c454e47c7f5997.json
+APPROVAL REQUIRED GATES:G11
+    CHECK: bash -c 'test ! -d /mnt/c/Users/muads/Claude/jiheeye-ultra && echo OLDCOPY-GONE-OK'
+    EXPECT: OLDCOPY-GONE-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/a0bc7d89c522fd33b00a15b15323a852117b260613ec2f75f3d4f200e4aa907e.json
+APPROVAL REQUIRED GATES:G12
+    CHECK: bash -c 'for j in J1 J2 J3 J4 J5 J6 J7 J8 J9; do grep -q "^## $j" reports/brief01.md || exit 1; done && echo REPORT-OK'
+    EXPECT: REPORT-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/8d2f3ad38689f0593cc478d5f1a401e8087a004765f1190249a3010ce89f1593.json
+APPROVAL REQUIRED GATES:G13
+    CHECK: diff -q /mnt/c/Users/muads/Claude/briefs/jiheeye-brief02.md briefs/brief02.md && echo BRIEF02-VERBATIM-OK
+    EXPECT: BRIEF02-VERBATIM-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/97e78a9ad64127f20d867a236f0e6a515c1e556323bdcf33c6a734240e593b45.json
+APPROVAL REQUIRED GATES:G14
+    CHECK: bash -c 'test -s pipeline/assets/voice/raw/clip1.mp3 && grep -q "44575846ec3e2069" DECISIONS.md && grep -q "35cb41ae21cf94e4" DECISIONS.md && test -f /mnt/c/Users/muads/Claude/jiheeye-inbox/clip1.mp3 && echo CLIP-STAGED-DEVIATION-DOCUMENTED'
+    EXPECT: CLIP-STAGED-DEVIATION-DOCUMENTED
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/b7af25563afcb7ee9ed0ab1a886df64a37e61a508c0ee10c85a483a6b2404329.json
+APPROVAL REQUIRED GATES:G15
+    CHECK: pipeline/.venv/bin/python -c "import sys; sys.path.insert(0, 'pipeline'); from pathlib import Path; from ugc.voice_clone import check_consent; print('CONSENT-OK', check_consent(Path('.')))"
+    EXPECT: CONSENT-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/38c2d05b1a10626160b5235512dfa33fc7446060a8b23921d1e3d568e224a238.json
+APPROVAL REQUIRED GATES:G16
+    CHECK: bash -c 'grep -qE "^ELEVENLABS_API_KEY=.+" pipeline/.env && grep -qE "^REPLICATE_API_TOKEN=.+" pipeline/.env && grep -q "^## J4 Keys" reports/brief02.md && echo KEYS-OK'
+    EXPECT: KEYS-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/93b829861cbde8b90a410531130057860892f40bae44ed794d15e7d25baca8c4.json
+APPROVAL REQUIRED GATES:G17
+    CHECK: bash -c 'cd pipeline && .venv/bin/python run.py preflight && echo PREFLIGHT-OK'
+    EXPECT: PREFLIGHT-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/78c89ff1f05fe0d8f710981b5ca7223ea5a4a37ee220f3966f9a0f6458aaeaa6.json
+APPROVAL REQUIRED GATES:G19
+    CHECK: bash -c 'cd pipeline && .venv/bin/python -c "import json; s=json.load(open(\"scripts/ad00_test.json\")); ids=[x[\"id\"] for x in s[\"scenes\"]]; assert \"product\" not in ids, ids; assert s[\"reviewed_by_native_speaker\"] is False; assert len(ids)==3, ids; print(\"AD00-OK\")"'
+    EXPECT: AD00-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/72be24cbb980bf8ed8f4eb5449b85f0238a51be40550bce08246e130894013b7.json
+APPROVAL REQUIRED GATES:G20
+    CHECK: bash -c 'grep -q "allow-unreviewed" pipeline/run.py && cd pipeline && JIHEEYE_ALLOW_LOCAL=1 .venv/bin/python tests/test_offline.py | tail -1'
+    EXPECT: ALL OFFLINE TESTS PASSED
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/4bde323418839ebff64add79ece127cead6a1995fe953737270a6b53b6103d80.json
+APPROVAL REQUIRED GATES:G22
+    CHECK: bash -c 'ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 pipeline/assets/avatar.png | grep -q "^1080,1920" && test -s /mnt/c/Users/muads/Claude/jiheeye-review/avatar_preview.png && grep -q "schema" reports/brief02.md && echo AVATAR-OK'
+    EXPECT: AVATAR-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/d4dc413c3ce25b09eee1309fcaa5781ef2cbe734dfa31bc12dc2dbcb46cdfa46.json
+APPROVAL REQUIRED GATES:G23
+    CHECK: bash -c 'test -s reports/brief02_spend.csv && awk -F, "NR>1{c=\$6} END{if(c<=10){print \"SPEND-OK\", c; exit 0} else {exit 1}}" reports/brief02_spend.csv'
+    EXPECT: SPEND-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/2e7c9169f64f392cc8878b5bd0bd7c6b6e32c019248cf37c8abf0210dc248ac8.json
+APPROVAL REQUIRED GATES:G24
+    CHECK: bash -c 'for j in J2 J3 J4 J5 J6 J7 J8; do grep -q "^## $j" reports/brief02.md || exit 1; done && grep -q "brief02_spend.csv" reports/brief02.md && echo REPORT-OK'
+    EXPECT: REPORT-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/a91e90ec0a2d2c4cf517b56cdec9e4de3595ddc8781d911be5778e7bc1f8aa24.json
+APPROVAL REQUIRED GATES:G25
+    CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && bash tools/verify_mirror.sh'
+    EXPECT: MIRROR-CLEAN-OK
+    CWD: /home/muads/jiheeye-ultra
+    SHELL: /bin/bash
+    PATH: /home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+    APPROVED: /home/muads/.unlazy/approved/19ec6c71760daee2bb6072f9761d05b48b0f910400eae1ea867cdd033347e6f5.json
+  RUN  GATES:G0 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G1 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G2 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G3 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G4 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G5 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G6 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G7 shell=/bin/bash cwd=/home/muads/jiheeye-ultra/pipeline PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G8 shell=/bin/bash cwd=/home/muads/jiheeye-ultra/pipeline PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G9 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G10 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G11 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G12 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G13 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G14 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G15 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G16 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G17 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G18 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G19 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G20 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G21 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G22 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G23 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G24 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G25 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  RUN  GATES:G26 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
+  PASS GATES:G0: this ledger states outcomes that can fail
+       exit=0; EXPECT=matched; output=sha256=48630b7361dd44ee870917b12c3d19b9d7bdea738aaca16bb04d4cab83b772d2; bytes=8
+  PASS GATES:G1: briefs/brief01.md is a byte-exact copy of the coordinator brief
+       exit=0; EXPECT=matched; output=sha256=e22f85bc58b7e632713eeded83288767637bbdd12bfbfc2abf49417795fbd5da; bytes=18
+  PASS GATES:G2: scaffolding files exist and DECISIONS.md seeds the five closed decisions
+       exit=0; EXPECT=matched; output=sha256=3545fe373d22a727eddfff776643da807b43f9d3431c5993054e9972e3b96204; bytes=12
+  PASS GATES:G3: project skill installed at .claude/skills with the repo path set
+       exit=0; EXPECT=matched; output=sha256=d820f7ee173e38f9762669b3ea34ce3a1b689b4ff6fd0560d601cc02d8827423; bytes=9
+  PASS GATES:G4: pipeline/.venv has every runtime dependency including modal
+       exit=0; EXPECT=matched; output=sha256=8df0145c04928e1ac952b9c0ce8511dd979a81fa865b566ff0e4b58a1bec4c5a; bytes=8
+  PASS GATES:G5: config points at the D: scratch tree, backend is modal, disk guard is wired into run.py
+       exit=0; EXPECT=matched; output=sha256=8736ec8a3562172ff0d8a6e55edd24a92408d46d2ebe2c5cdc28ee94f9d8f61a; bytes=10
+  PASS GATES:G6: the jiheeye-ultra Modal app is deployed
+       exit=0; EXPECT=matched; output=sha256=2e1a28d1adc2dba711644966d0ffc9944831b57675f4ee8f6019bb5b7b59a8fb; bytes=18
+  PASS GATES:G7: offline end-to-end test passes with the real local backend
+       exit=0; EXPECT=matched; output=sha256=59347257ed0af26b6e0a821f13db5a5ab5e6dc374f2ae370c7c99f89a9b21837; bytes=4825
+  PASS GATES:G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
+       exit=0; EXPECT=matched; output=sha256=78de8dd6f76910c5662a8a5df7a396c059619a0202e916dff77e7fb5c197985a; bytes=1140
+  PASS GATES:G9: private GitHub repo has main pushed
+       exit=0; EXPECT=matched; output=sha256=a1b03b952d3bdcccbe50d6d8485cceef64fe8b481e8c003bb995af6d41390caa; bytes=16
+  PASS GATES:G10: public mirror contains only allowlisted files and none of the hard-denied kinds
+       exit=0; EXPECT=matched; output=sha256=57be2f5dc30bbdf8e2b9a4c4cdf4031eecf990f02ff09fc1c9fda9a724dce17f; bytes=27
+  PASS GATES:G11: the old C: copy is deleted
+       exit=0; EXPECT=matched; output=sha256=67bc10f574ad82773193f221191b3a41fc75b2e0a03aad41cfebc085ef2af5b1; bytes=16
+  PASS GATES:G12: reports/brief01.md covers every job J1-J9 with commands and outputs
+       exit=0; EXPECT=matched; output=sha256=b5d799b8ae3e8271ceb1d56f5cb1568d96693dfbb46d5b606ffa2133a3bc5c18; bytes=10
+  PASS GATES:G13: briefs/brief02.md is a byte-exact copy of the coordinator brief
+       exit=0; EXPECT=matched; output=sha256=be5e093e6089ff7d0d4f3a871f99bddd22b854ce5811545fd07da79962254ae9; bytes=20
+  PASS GATES:G14: voice clip staged at pipeline/assets/voice/raw/clip1.mp3; its real sha256 recorded; the deviation from the brief's stated prefix 35cb41ae21cf94e4 investigated with decoded-PCM evidence and documented in DECISIONS.md; the inbox delete skipped because the verify precondition failed
+       exit=0; EXPECT=matched; output=sha256=c3314d548a3156b2d74981a1919c77a3f8cac80d687f16723832e286ed23a343; bytes=33
+  PASS GATES:G15: CONSENT.md voice gate passes (J3, output pasted in report)
+       exit=0; EXPECT=matched; output=sha256=54d68f1353775987e31fa5c17c784640b9698df076a5a3ce9b443661fd4603f5; bytes=25
+  PASS GATES:G16: both API keys present in pipeline/.env; machine-wide ElevenLabs key search done (paths/names only, no values)
+       exit=0; EXPECT=matched; output=sha256=1d9ad8cf5f7d02e54f4040a103991a3bf2a9999505528337cc783177954a6da7; bytes=8
+  PASS GATES:G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
+       exit=0; EXPECT=matched; output=sha256=d4bd683d3f3b99838c60b898b444db74a585d756e3569603c1810ff7e63f7e0a; bytes=1422
+  PASS GATES:G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
+       exit=0; EXPECT=matched; output=sha256=5fca3d663ffb8009713dc69ddb65f826436c151e77e10204afbe64b673a6fff0; bytes=15
+  PASS GATES:G19: pipeline/scripts/ad00_test.json is ad01 minus the product scene with reviewed_by_native_speaker still false
+       exit=0; EXPECT=matched; output=sha256=1af73591f76a0bebcfe942c1c1f1c32685b9181d72a5b3c55949d21d4449270c; bytes=8
+  PASS GATES:G20: --allow-unreviewed implemented (valid only with --until tts) and the offline regression suite still passes
+       exit=0; EXPECT=matched; output=sha256=90c2a968a832dbcf389b9cb1c12ae2404ec6239eb351685c4f1ef75f1d279ed1; bytes=25
+  PASS GATES:G21: make --until tts --allow-unreviewed ran; UNREVIEWED line printed; ad00_vo.mp3 + ad00_script.txt on C: for Mayo
+       exit=0; EXPECT=matched; output=sha256=b89d0bd43608349f60f958ddab2c54b3e97652dcda6b04c1c13b13f8a86551cd; bytes=16
+  PASS GATES:G22: avatar extended to 1080x1920 (9:16) and preview written to C:; method (model+schema, or blurred fallback) documented
+       exit=0; EXPECT=matched; output=sha256=3b09ad7866579f74e0b249d054df55c4888da0cf03b7ddace89d5d68f79bb1d8; bytes=10
+  PASS GATES:G23: spend ledger complete and cumulative <= $10
+       exit=0; EXPECT=matched; output=sha256=68a88d0660a6ea9262384996bb3c779dc22b3b9cb7725351f20fb4ea76b1db12; bytes=14
+  PASS GATES:G24: reports/brief02.md holds RAW pasted outputs for J2-J8 (sha256sum, consent gate, key search, preflight, voice run, make run, model schema) and the spend CSV
+       exit=0; EXPECT=matched; output=sha256=b5d799b8ae3e8271ceb1d56f5cb1568d96693dfbb46d5b606ffa2133a3bc5c18; bytes=10
+  PASS GATES:G25: private repo pushed and public mirror republished clean
+       exit=0; EXPECT=matched; output=sha256=57be2f5dc30bbdf8e2b9a4c4cdf4031eecf990f02ff09fc1c9fda9a724dce17f; bytes=27
+  PASS GATES:G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
+       exit=0; EXPECT=matched; output=sha256=c864cf7a845048dcd561448dbc14c851a000031cf65ba9e2ae5b57a4de0a169c; bytes=19
+GATES.md: 27 gates
+ALL MET (27 met, reran: 27, previously met reverified: 27)
+```
+)

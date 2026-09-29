@@ -8,3 +8,4 @@ time_utc,provider,model,units,est_usd,cumulative_usd
 2026-09-29T01:02Z,modal,jiheeye-ultra/voice_prep_remote,0 runs - cache hit on rerun,0.00,5.24
 2026-09-29T01:02Z,elevenlabs,instant-voice-cloning,1 voice created (9.1 MiB sample) - SUCCESS no fee observed,0.00,5.24
 2026-09-29T01:02Z,elevenlabs,eleven_v3,ad00_test TTS 248 chars (counter still 0 at +2min),0.00,5.24
+2026-09-29T01:12Z,modal,tests/test_modal.py (gate rerun),1 run 12 QC checks,0.01,5.25

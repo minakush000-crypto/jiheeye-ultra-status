@@ -43,13 +43,13 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
   CHECK: .venv/bin/python tests/test_offline.py
   CWD: pipeline
   EXPECT: ALL OFFLINE TESTS PASSED
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=ec51ad6b6f6dc46953e3933a6206aa935c4b53f875a4cb84ee9489791ad5fec3; output-bytes=4767
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=59347257ed0af26b6e0a821f13db5a5ab5e6dc374f2ae370c7c99f89a9b21837; output-bytes=4825
 
 - [x] G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
   CHECK: .venv/bin/python tests/test_modal.py
   CWD: pipeline
   EXPECT: ALL MODAL TESTS PASSED (QC checks 12/12)
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=fccec9e728851910ff3ff2de2d0df935101405e4e0d215c9f2b92bcf2888136c; output-bytes=1140
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=78de8dd6f76910c5662a8a5df7a396c059619a0202e916dff77e7fb5c197985a; output-bytes=1140
 
 - [x] G9: private GitHub repo has main pushed
   CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && echo PRIVATE-REPO-OK'
@@ -59,7 +59,7 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
 - [x] G10: public mirror contains only allowlisted files and none of the hard-denied kinds
   CHECK: bash tools/verify_mirror.sh
   EXPECT: MIRROR-CLEAN-OK
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=6cddf6303f265c0818613bfbb392bf62c4539bc57205c6c8d99cfb7ba6a1128f; output-bytes=27
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=57be2f5dc30bbdf8e2b9a4c4cdf4031eecf990f02ff09fc1c9fda9a724dce17f; output-bytes=27
 
 - [x] G11: the old C: copy is deleted
   CHECK: bash -c 'test ! -d /mnt/c/Users/muads/Claude/jiheeye-ultra && echo OLDCOPY-GONE-OK'
@@ -100,7 +100,7 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
 - [x] G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
   CHECK: bash -c 'cd pipeline && .venv/bin/python run.py preflight && echo PREFLIGHT-OK'
   EXPECT: PREFLIGHT-OK
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=54c39f77454f1515657088fdd60847069556b20c78d97c8a4cf71906f70d7a81; output-bytes=1422
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=d4bd683d3f3b99838c60b898b444db74a585d756e3569603c1810ff7e63f7e0a; output-bytes=1422
 
 - [x] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
   CHECK: bash -c 'test -s pipeline/assets/voice/voice_sample.wav && test -s pipeline/assets/voice/voice_id.txt && grep -q "Modal runtime" reports/brief02.md && grep -q "voice_id" reports/brief02.md && echo VOICE-STAGE-OK'
@@ -130,7 +130,7 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
 - [x] G23: spend ledger complete and cumulative <= $10
   CHECK: bash -c 'test -s reports/brief02_spend.csv && awk -F, "NR>1{c=\$6} END{if(c<=10){print \"SPEND-OK\", c; exit 0} else {exit 1}}" reports/brief02_spend.csv'
   EXPECT: SPEND-OK
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=cb5a9f4b8e62d74b77c83392b0c3e6b8390c69d3cbc4192b3ece4f61b4f3cf91; output-bytes=14
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=68a88d0660a6ea9262384996bb3c779dc22b3b9cb7725351f20fb4ea76b1db12; output-bytes=14
 
 - [x] G24: reports/brief02.md holds RAW pasted outputs for J2-J8 (sha256sum, consent gate, key search, preflight, voice run, make run, model schema) and the spend CSV
   CHECK: bash -c 'for j in J2 J3 J4 J5 J6 J7 J8; do grep -q "^## $j" reports/brief02.md || exit 1; done && grep -q "brief02_spend.csv" reports/brief02.md && echo REPORT-OK'
@@ -142,9 +142,10 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
   EXPECT: MIRROR-CLEAN-OK
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=57be2f5dc30bbdf8e2b9a4c4cdf4031eecf990f02ff09fc1c9fda9a724dce17f; output-bytes=27
 
-- [ ] G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
+- [x] G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
   CHECK: grep -q "REVERIFY-OUTPUT-BELOW" reports/brief02.md && echo REVERIFY-IN-REPORT
   EXPECT: REVERIFY-IN-REPORT
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=c864cf7a845048dcd561448dbc14c851a000031cf65ba9e2ae5b57a4de0a169c; output-bytes=19
 
 RECREATED session 2 (Mayo's ElevenLabs IVC plan + new sk_ key landed,
 pipeline/.env mtime 2026-09-28 19:57:41 CDT): G18/G21/G26 are live gates
