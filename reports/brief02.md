@@ -425,14 +425,19 @@ history there.
 
 REVERIFY-OUTPUT-BELOW
 
-(command: `node ~/.claude/skills/unlazy/scripts/gate-check.mjs --approve --reverify --timeout 180 GATES.md`, run
-from the repo root, in the shell, AFTER the last code commit of this session
-(b4990c1, chore: gitignore voice_id.txt). The `--approve --reverify` combined
-mode is required because approval records bind to the session environment:
-reverify alone listed the 24 session-1 gates "reverify not run" until each
-oracle was re-approved for this session (approvals live in ~/.unlazy/, not in
-the repo). gate-check --approve first ran re-created G18/G21 at 20:05 CDT.
-ALL 27 RERAN AND MET (see last lines). Raw output follows.)
+(command: `node ~/.claude/skills/unlazy/scripts/gate-check.mjs --approve --reverify --timeout 600 GATES.md`, run from
+the repo root, in the shell, AFTER the last code commit of this session -
+dce8a88 "chore: archive_b2 manifest inputs parameterized". Result: exit 0,
+"GATES.md: 27 gates" / "ALL MET (27 met, reran: 27, previously met
+reverified: 27)". Approval mechanics: approvals bind to the session
+environment, so the combined --approve --reverify mode re-approves and re-runs
+every oracle (reverify alone listed stale-session gates as "reverify not
+run"). Two earlier verification passes hit timeouts on the offline suite
+(180 s and 300 s per-gate: the suite takes ~3 m on this box; measured
+standalone 3m04.9s with SUITE-EXIT 0) and one concurrent pass filled the RAM
+backed /tmp ("No space left on device"; cleaned /tmp/ugc_* leftovers, freed
+1.4 GB). This final pass ran with a 600 s per-gate budget, jobs=1. Raw
+output follows.)
 
 ```
   RUN  GATES:G0 shell=/bin/bash cwd=/home/muads/jiheeye-ultra PATH=/home/muads/.bun/bin:/home/muads/.local/bin:/home/muads/.bun/bin:/home/muads/.nvm/versions/node/v24.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/muads/.local/bin:/snap/bin:/home/muads/.claude/plugins/cache/thedotmack/claude-mem/13.28.0/bin
@@ -476,10 +481,10 @@ ALL 27 RERAN AND MET (see last lines). Raw output follows.)
        exit=0; EXPECT=matched; output=sha256=8736ec8a3562172ff0d8a6e55edd24a92408d46d2ebe2c5cdc28ee94f9d8f61a; bytes=10
   PASS GATES:G6: the jiheeye-ultra Modal app is deployed
        exit=0; EXPECT=matched; output=sha256=2e1a28d1adc2dba711644966d0ffc9944831b57675f4ee8f6019bb5b7b59a8fb; bytes=18
-  FAIL GATES:G7: offline end-to-end test passes with the real local backend
-       timed out after 180s; exit=none signal=SIGKILL; EXPECT=not matched; output=PASS validator blocks unreviewed script | PASS validator allow_unreviewed accepts unreviewed script | PASS validator requires avatar hook first | PASS consent gate blocks unsigned CONSENT.md | PASS consent gate accepts signed CONSENT.md | PASS license gate blocks when evidence screenshot is missing | ... | [20:17:33] [assemble] $ ffmpeg -y -f concat -safe 0 -i /tmp/ugc_test_p6kw_0t_/pipeline/runs/t/segments.txt -c copy /tmp/ugc_test_p6kw_0t_/pipeline/runs/t/video_silent.mp4 |
+  PASS GATES:G7: offline end-to-end test passes with the real local backend
+       exit=0; EXPECT=matched; output=sha256=738ceeecab24ccc07fe3dc4fa2af92f531f652bfd5b41ea3e22e13b87dee6e62; bytes=4825
   PASS GATES:G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
-       exit=0; EXPECT=matched; output=sha256=f936d6d4398de1eb2b474497b7cd5370cfc221e3fa4633bfdeadd3f1d58fb70d; bytes=1140
+       exit=0; EXPECT=matched; output=sha256=55759ee90f1d292d6a6d6af41987f82ba46bea58cfaf696b0ea34720a54c6a84; bytes=1140
   PASS GATES:G9: private GitHub repo has main pushed
        exit=0; EXPECT=matched; output=sha256=a1b03b952d3bdcccbe50d6d8485cceef64fe8b481e8c003bb995af6d41390caa; bytes=16
   PASS GATES:G10: public mirror contains only allowlisted files and none of the hard-denied kinds
@@ -497,7 +502,7 @@ ALL 27 RERAN AND MET (see last lines). Raw output follows.)
   PASS GATES:G16: both API keys present in pipeline/.env; machine-wide ElevenLabs key search done (paths/names only, no values)
        exit=0; EXPECT=matched; output=sha256=1d9ad8cf5f7d02e54f4040a103991a3bf2a9999505528337cc783177954a6da7; bytes=8
   PASS GATES:G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
-       exit=0; EXPECT=matched; output=sha256=9d3d0a695c0f19cff2a9d08864e8b6de4aced5a1cfa0fdc12d661d78df4bc418; bytes=1422
+       exit=0; EXPECT=matched; output=sha256=194fae0d7707faa7b6d81e0ce295232fb1f37cdad787f4a6b43aacc51b923119; bytes=1422
   PASS GATES:G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
        exit=0; EXPECT=matched; output=sha256=5fca3d663ffb8009713dc69ddb65f826436c151e77e10204afbe64b673a6fff0; bytes=15
   PASS GATES:G19: pipeline/scripts/ad00_test.json is ad01 minus the product scene with reviewed_by_native_speaker still false
@@ -517,6 +522,5 @@ ALL 27 RERAN AND MET (see last lines). Raw output follows.)
   PASS GATES:G26: gate-check --reverify ran AFTER the last code commit and its output is pasted in reports/brief02.md under the REVERIFY marker (the reverify command itself runs from the shell, not from inside a gate)
        exit=0; EXPECT=matched; output=sha256=c864cf7a845048dcd561448dbc14c851a000031cf65ba9e2ae5b57a4de0a169c; bytes=19
 GATES.md: 27 gates
-UNMET: 1 (met: 26, reran: 27, previously met reverified: 27)
-  GATES:G7
+ALL MET (27 met, reran: 27, previously met reverified: 27)
 ```

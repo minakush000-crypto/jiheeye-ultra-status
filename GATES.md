@@ -43,13 +43,13 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
   CHECK: .venv/bin/python tests/test_offline.py
   CWD: pipeline
   EXPECT: ALL OFFLINE TESTS PASSED
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=9422423b963cca18ca4b6a697fab6bb96e8bb97fc851387005129049b0caa9ae; output-bytes=4825
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=738ceeecab24ccc07fe3dc4fa2af92f531f652bfd5b41ea3e22e13b87dee6e62; output-bytes=4825
 
 - [x] G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
   CHECK: .venv/bin/python tests/test_modal.py
   CWD: pipeline
   EXPECT: ALL MODAL TESTS PASSED (QC checks 12/12)
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=85f37618614a589b87bd651481ce69dcde05efdd85eb0d9e1b3e2090f80278ea; output-bytes=1140
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=55759ee90f1d292d6a6d6af41987f82ba46bea58cfaf696b0ea34720a54c6a84; output-bytes=1140
 
 - [x] G9: private GitHub repo has main pushed
   CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && echo PRIVATE-REPO-OK'
@@ -100,7 +100,7 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
 - [x] G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
   CHECK: bash -c 'cd pipeline && .venv/bin/python run.py preflight && echo PREFLIGHT-OK'
   EXPECT: PREFLIGHT-OK
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=67d8e8764a5c73654fca239cb44d998508ebae98fc17b61b198440212f147b78; output-bytes=1422
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=194fae0d7707faa7b6d81e0ce295232fb1f37cdad787f4a6b43aacc51b923119; output-bytes=1422
 
 - [x] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
   CHECK: bash -c 'test -s pipeline/assets/voice/voice_sample.wav && test -s pipeline/assets/voice/voice_id.txt && grep -q "Modal runtime" reports/brief02.md && grep -q "voice_id" reports/brief02.md && echo VOICE-STAGE-OK'
