@@ -39,17 +39,17 @@ Scope: execute every job in briefs/brief01.md (J1-J9) so that each "done means" 
   EXPECT: MODAL-DEPLOYED-OK
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=2e1a28d1adc2dba711644966d0ffc9944831b57675f4ee8f6019bb5b7b59a8fb; output-bytes=18
 
-- [ ] G7: offline end-to-end test passes with the real local backend
+- [x] G7: offline end-to-end test passes with the real local backend
   CHECK: .venv/bin/python tests/test_offline.py
   CWD: pipeline
   EXPECT: ALL OFFLINE TESTS PASSED
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=9422423b963cca18ca4b6a697fab6bb96e8bb97fc851387005129049b0caa9ae; output-bytes=4825
 
-- [ ] G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
+- [x] G8: Modal render test passes with all 12 QC checks green on a file rendered on Modal
   CHECK: .venv/bin/python tests/test_modal.py
   CWD: pipeline
   EXPECT: ALL MODAL TESTS PASSED (QC checks 12/12)
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra/pipeline; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=85f37618614a589b87bd651481ce69dcde05efdd85eb0d9e1b3e2090f80278ea; output-bytes=1140
 
 - [x] G9: private GitHub repo has main pushed
   CHECK: bash -c 'git ls-remote https://github.com/minakush000-crypto/jiheeye-ultra.git refs/heads/main | grep -q main && echo PRIVATE-REPO-OK'
@@ -100,7 +100,7 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
 - [x] G17: preflight exits 0 (schema lookups, consent, Modal reachability, ElevenLabs model+Somali listing; no paid calls)
   CHECK: bash -c 'cd pipeline && .venv/bin/python run.py preflight && echo PREFLIGHT-OK'
   EXPECT: PREFLIGHT-OK
-  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=54a6de21b812a20a2a3ba8501b7d979e10003930382fffaccf32b02d7561fca4; output-bytes=1422
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=67d8e8764a5c73654fca239cb44d998508ebae98fc17b61b198440212f147b78; output-bytes=1422
 
 - [x] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
   CHECK: bash -c 'test -s pipeline/assets/voice/voice_sample.wav && test -s pipeline/assets/voice/voice_id.txt && grep -q "Modal runtime" reports/brief02.md && grep -q "voice_id" reports/brief02.md && echo VOICE-STAGE-OK'
@@ -112,10 +112,10 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
   EXPECT: AD00-OK
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=1af73591f76a0bebcfe942c1c1f1c32685b9181d72a5b3c55949d21d4449270c; output-bytes=8
 
-- [ ] G20: --allow-unreviewed implemented (valid only with --until tts) and the offline regression suite still passes
+- [x] G20: --allow-unreviewed implemented (valid only with --until tts) and the offline regression suite still passes
   CHECK: bash -c 'grep -q "allow-unreviewed" pipeline/run.py && cd pipeline && JIHEEYE_ALLOW_LOCAL=1 .venv/bin/python tests/test_offline.py | tail -1'
   EXPECT: ALL OFFLINE TESTS PASSED
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=90c2a968a832dbcf389b9cb1c12ae2404ec6239eb351685c4f1ef75f1d279ed1; output-bytes=25
 
 - [x] G21: make --until tts --allow-unreviewed ran; UNREVIEWED line printed; ad00_vo.mp3 + ad00_script.txt on C: for Mayo
   CHECK: bash -c 'test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_vo.mp3 && test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_script.txt && grep -q "UNREVIEWED: audio for Mayo" reports/brief02.md && echo REVIEW-FILES-OK'
