@@ -102,9 +102,10 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
   EXPECT: PREFLIGHT-OK
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=54c39f77454f1515657088fdd60847069556b20c78d97c8a4cf71906f70d7a81; output-bytes=1422
 
-- [ ] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
+- [x] G18: voice stage done: clean sample + cloned voice id exist on disk, Modal runtime and IVC result recorded in the report
   CHECK: bash -c 'test -s pipeline/assets/voice/voice_sample.wav && test -s pipeline/assets/voice/voice_id.txt && grep -q "Modal runtime" reports/brief02.md && grep -q "voice_id" reports/brief02.md && echo VOICE-STAGE-OK'
   EXPECT: VOICE-STAGE-OK
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=5fca3d663ffb8009713dc69ddb65f826436c151e77e10204afbe64b673a6fff0; output-bytes=15
 
 - [x] G19: pipeline/scripts/ad00_test.json is ad01 minus the product scene with reviewed_by_native_speaker still false
   CHECK: bash -c 'cd pipeline && .venv/bin/python -c "import json; s=json.load(open(\"scripts/ad00_test.json\")); ids=[x[\"id\"] for x in s[\"scenes\"]]; assert \"product\" not in ids, ids; assert s[\"reviewed_by_native_speaker\"] is False; assert len(ids)==3, ids; print(\"AD00-OK\")"'
@@ -116,9 +117,10 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
   EXPECT: ALL OFFLINE TESTS PASSED
   EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=90c2a968a832dbcf389b9cb1c12ae2404ec6239eb351685c4f1ef75f1d279ed1; output-bytes=25
 
-- [ ] G21: make --until tts --allow-unreviewed ran; UNREVIEWED line printed; ad00_vo.mp3 + ad00_script.txt on C: for Mayo
+- [x] G21: make --until tts --allow-unreviewed ran; UNREVIEWED line printed; ad00_vo.mp3 + ad00_script.txt on C: for Mayo
   CHECK: bash -c 'test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_vo.mp3 && test -s /mnt/c/Users/muads/Claude/jiheeye-review/ad00_script.txt && grep -q "UNREVIEWED: audio for Mayo" reports/brief02.md && echo REVIEW-FILES-OK'
   EXPECT: REVIEW-FILES-OK
+  EVIDENCE: exit=0; shell=/bin/bash; cwd=/home/muads/jiheeye-ultra; path=5fb5264d6ab0/20 entries; EXPECT=matched; output-sha256=b89d0bd43608349f60f958ddab2c54b3e97652dcda6b04c1c13b13f8a86551cd; output-bytes=16
 
 - [x] G22: avatar extended to 1080x1920 (9:16) and preview written to C:; method (model+schema, or blurred fallback) documented
   CHECK: bash -c 'ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 pipeline/assets/avatar.png | grep -q "^1080,1920" && test -s /mnt/c/Users/muads/Claude/jiheeye-review/avatar_preview.png && grep -q "schema" reports/brief02.md && echo AVATAR-OK'
@@ -144,6 +146,9 @@ spend (ElevenLabs + Replicate + Modal) stays <= $10.
   CHECK: grep -q "REVERIFY-OUTPUT-BELOW" reports/brief02.md && echo REVERIFY-IN-REPORT
   EXPECT: REVERIFY-IN-REPORT
 
-ABANDON: G18 blocked on Mayo: ElevenLabs instant voice cloning requires a paid plan tier (HTTP 400 paid_plan_required, request_id 7185e9dfc60a80a303c3b287f243188b, from the working sk_ key found on the machine); only Mayo can pick the plan and put its sk_ secret key into pipeline/.env; all Flash-side work is done (Modal voice sample rendered in 82 s and cached, consent gate passes, preflight 13/13); the clone call is the only step left
-ABANDON: G21 blocked on Mayo via G18: make --until tts --allow-unreviewed needs the cloned voice; the command, guard rails, ad00_script.txt and the review folder are ready; nothing to run until an IVC-capable sk_ key lands in pipeline/.env
-ABANDON: G26 the final gate-check --reverify belongs at brief closure after J6-J7 complete; an interim gate-check already ran and is published (24/27 met; G18/G21/G26 unmet); these will be re-created as new gates when Mayo unblocks
+RECREATED session 2 (Mayo's ElevenLabs IVC plan + new sk_ key landed,
+pipeline/.env mtime 2026-09-28 19:57:41 CDT): G18/G21/G26 are live gates
+again; the interim ABANDON notes are removed and the interim 24/27 result
+stays as history above. gate-check --approve re-runs them this session, and
+the final gate-check --reverify happens after the last commit of this
+session (paste in reports/brief02.md under REVERIFY-OUTPUT-BELOW).

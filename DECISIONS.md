@@ -95,3 +95,23 @@ Format: `YYYY-MM-DD — decision — who decided — why`.
   82 s wall and cached. Unblocking needs Mayo's billing choice (a plan with
   IVC, Starter or above) plus that account's sk_ secret key in
   pipeline/.env — Flash, reported 2026-09-28.
+- 2026-09-29 — Mayo upgraded the ElevenLabs account to an IVC-capable plan
+  (subscription API: tier starter, character_count 0, limit 37438) and placed
+  a NEW sk_ secret key in pipeline/.env (one line, 51 chars, sha16
+  c07aa7f566131b22, file mtime 2026-09-28 19:57:41 CDT) — a different key
+  from session 1's machine-found one (c4304e73dcc5). The new key's scope
+  includes user_read: GET /v1/user/subscription returns HTTP 200 where
+  session 1's key got 401 missing_permissions. J6 rerun (Modal stage cache
+  hit, per Mayo's instruction) cloned the voice: voice id SzG54l8uNzFFwtJDDtxw,
+  no requires_verification flag, no credit deduction observed at creation —
+  Mayo (billing + key), Flash (rerun + verification).
+- 2026-09-29 — TTS cost measured at the provider instead of estimated: the
+  ad00_test make run made ONE eleven_v3 call for 248 chars; subscription
+  character_count read 0 before and still 0 ~2 minutes after the call
+  (metering lag suspected). Booked $0.00 marginal (upper bound 248 credits =
+  0.66% of the 37,438 allowance). If provider billing later shows a
+  deduction, the reports/brief02_spend.csv row gets a correction — Flash.
+- 2026-09-29 — /mnt/c/Users/muads/Claude/jiheeye-review/ad00_script.txt was
+  stale (session 1's 272-byte version no longer matched the current
+  ad00_test.json); rewritten directly from the script JSON — Flash
+  (session-2 fix #1).
